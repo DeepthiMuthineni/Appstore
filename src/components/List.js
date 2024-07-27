@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function AppList() {
+  const backgroundImageStyle = {
+    backgroundImage: 'url("https://tse1.mm.bing.net/th?id=OIP.UxRuk7ZZP7fX2E8Vq1r2-gHaNK&pid=Api&P=0&h=180")',
+    backgroundSize: 'cover',
+    padding: '50px 0' // Optional: Adds some padding to the top and bottom
+  };
   const [applications, setApplications] = useState([]);
   const navigate = useNavigate();
 
@@ -35,6 +40,7 @@ function AppList() {
   }
 
   return (
+    <div style={backgroundImageStyle}>
     <div className="h-100 p-5 text-bg-secondary">
       <div className="container mt-4">
         <h2 className="text-center mb-4">Application List</h2>
@@ -43,6 +49,7 @@ function AppList() {
             applications.map(app => (
               <div className="col-md-4" key={app.id} style={{ marginTop: '2%' }}>
                 <div className="card application-list-container">
+                <img src={app.image} className="card-img-top" height={200} alt={app.name} />
                   <div className="card-body">
                     <ul className="list-group" style={{ listStyleType: 'none' }}>
                       <li className="app-text" style={{ textAlign: 'center' }}>
@@ -68,6 +75,7 @@ function AppList() {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }

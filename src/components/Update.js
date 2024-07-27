@@ -6,6 +6,11 @@ import { useEffect,useState } from 'react';
 
 
 function UpdateApp(){
+    const backgroundImageStyle = {
+        backgroundImage: 'url("https://tse2.mm.bing.net/th?id=OIP.lIRgrN_WE67eIfApu3wGwwHaGL&pid=Api&P=0&h=180")',
+        backgroundSize: 'cover',
+        padding: '50px 0' // Optional: Adds some padding to the top and bottom
+      };
     const navigate=useNavigate();
     const [application,setApplications]=useState(null);
     const {id}=useParams();
@@ -26,6 +31,7 @@ function UpdateApp(){
         {
             enableReinitialize: true,
             initialValues: {
+              image: application?.image || '',
               name: application?.name || '',
               description:application?.description || '',
               releaseDate:application?.releaseDate || '',
@@ -35,7 +41,7 @@ function UpdateApp(){
               category:application?.category || ''
             },
               validationSchema: Yup.object({
-                // image: Yup.string().required('Image URL is required'),
+                image: Yup.string().required('Image URL is required'),
                 name: Yup.string().min(5,'Name must be at least 5 characters').required('Name is required'),
                 ratings: Yup.number().min(1,'Ratings must be greater than 0').required('Ratings is required'),
                 version: Yup.string().min(1.0,'Version must be greater than 0').required('Mileage is required'),
@@ -48,7 +54,7 @@ function UpdateApp(){
                 .then(response => {
                   setStatus('success');
                   resetForm();
-                  navigate('/');
+                  navigate('/list');
                  
                 })
                 .catch(error => {
@@ -64,10 +70,29 @@ function UpdateApp(){
 
 
         return (
+            <div style={backgroundImageStyle}>
+            <div className="app">
             <div className="h-100 p-5 text-bg-secondary">
             <div className='container mt-4'>
                 <h2>Update Application</h2>
                 <form onSubmit={formik.handleSubmit}>
+                <div className='mb-3'>
+            <label htmlFor='image' className='form-label'>Image URL</label>
+            <input
+              id="image"
+              name="image"
+              type="text"
+              className='form-control'
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.image}
+              data-testid="image"
+            />
+            {
+            formik.touched.image && formik.errors.image ? (<div className='text-danger'>{formik.errors.image}</div> ) 
+            : null
+            }
+        </div>
                     <div className='mb-3'>
                         <label htmlFor='name' className='form-label'>Name</label>
                         <input
@@ -188,6 +213,8 @@ function UpdateApp(){
 
                 </form>
             </div>
+        </div>
+        </div>
         </div>
         )
 }

@@ -2,10 +2,19 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 function Add() {
+    const backgroundImageStyle = {
+        backgroundImage: 'url("https://tse2.mm.bing.net/th?id=OIP.lIRgrN_WE67eIfApu3wGwwHaGL&pid=Api&P=0&h=180")',
+        backgroundSize: 'cover',
+        padding: '50px 0' // Optional: Adds some padding to the top and bottom
+      };
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
+            image:'',
             name: '',
             description: '',
             releaseDate: '',
@@ -15,6 +24,7 @@ function Add() {
             category: ''
         },
         validationSchema: Yup.object({
+            image: Yup.string().required('Image URL is required'),
             name: Yup.string().min(5, 'Name must be at least 5 characters').required('Name is required'),
             ratings: Yup.number().min(0, 'Ratings must be greater than or equal to 0').max(5, 'Ratings must be less than or equal to 5').required('Ratings is required'),
             version: Yup.string().required('Version is required'),
@@ -26,6 +36,7 @@ function Add() {
                 .then(response => {
                     setStatus('success');
                     resetForm();
+                    navigate('/list'); 
                 })
                 .catch(error => {
                     setStatus('error');
@@ -37,10 +48,29 @@ function Add() {
     });
 
     return (
+        <div style={backgroundImageStyle}>
+        <div className="app">
         <div className="h-100 p-5 text-bg-secondary">
             <div className='container mt-4'>
                 <h2>Add Application</h2>
                 <form onSubmit={formik.handleSubmit}>
+                <div className='mb-3'>
+                    <label htmlFor='image' className='form-label'>Image URL</label>
+                    <input
+                        id="image"
+                        name="image"
+                        type="text"
+                        className='form-control'
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.image}
+                        data-testid="image"
+                    />
+                    {
+                        formik.touched.image && formik.errors.image ? <div className='text-danger'>{formik.errors.image}</div>
+                        : null
+                    }  
+                </div>
                     <div className='mb-3'>
                         <label htmlFor='name' className='form-label'>Name</label>
                         <input
@@ -162,6 +192,12 @@ function Add() {
                 </form>
             </div>
         </div>
+        </div>
+       
+        </div>
+        
+      
+   
     );
 }
 
