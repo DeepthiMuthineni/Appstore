@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/auth');
+                const response = await axios.get('http://localhost:4300/auth');
                 setUser(response.data);
             } catch (error) {
                 // Handle errors if needed
@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
 
     const login = async (credentials) => {
         try {
-            const response = await axios.post('http://localhost:5000/login', credentials);
+            const response = await axios.post('http://localhost:4300/users', credentials);
             setUser(response.data);
         } catch (error) {
             console.error("Login failed", error);

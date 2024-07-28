@@ -6,12 +6,12 @@ function AppList() {
   const backgroundImageStyle = {
     backgroundImage: 'url("https://tse1.mm.bing.net/th?id=OIP.UxRuk7ZZP7fX2E8Vq1r2-gHaNK&pid=Api&P=0&h=180")',
     backgroundSize: 'cover',
-    padding: '50px 0' // Optional: Adds some padding to the top and bottom
+    padding: '50px 0' 
   };
   const [applications, setApplications] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch applications from the server
+  
   function fetchApplications() {
     axios.get('http://localhost:4300/applications')
       .then(response => {
@@ -28,7 +28,7 @@ function AppList() {
 
   // Handle delete operation
   function handleDelete(id) {
-    if (window.confirm('Are you sure you want to delete this application?')) {
+    
       axios.delete(`http://localhost:4300/applications/${id}`)
         .then(() => {
           fetchApplications(); // Refresh the list after deletion
@@ -36,7 +36,7 @@ function AppList() {
         .catch(error => {
           console.log('There was an error deleting the application data!', error);
         });
-    }
+    
   }
 
   return (

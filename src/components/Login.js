@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
+
 const Login = () => {
     const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ const Login = () => {
 
 
     return (
-        <div className='log' style={{backgroundColor:"cadetblue",padding:"50px"}}>
+        <div style={{backgroundColor:"lavender",padding:"50px"}}>
         <div className="container mt-5" >
             <div className="row justify-content-center">
                 <div className="col-md-6">

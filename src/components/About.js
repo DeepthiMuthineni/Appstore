@@ -1,7 +1,7 @@
 function About(){
 
     const backgroundImageStyle = {
-        backgroundImage: 'url("https://tse1.mm.bing.net/th?id=OIP.a2a1E_P9IdejQRurjgnphwHaEF&pid=Api&P=0&h=180")',
+        backgroundImage: 'url("https://tse1.mm.bing.net/th?id=OIP.CysA_LxnogrySKQnJbhoxwHaE7&pid=Api&P=0&h=180")',
         backgroundSize: 'cover',
         padding: '50px 0' // Optional: Adds some padding to the top and bottom
       };

@@ -1,7 +1,7 @@
 
 function Home(){
   const backgroundImageStyle = {
-    backgroundImage: 'url("https://tse1.mm.bing.net/th?id=OIP.a2a1E_P9IdejQRurjgnphwHaEF&pid=Api&P=0&h=180")',
+    backgroundImage: 'url("https://tse4.mm.bing.net/th?id=OIP.ouV2A9nPjOySzT6OcHGv4AHaHa&pid=Api&P=0&h=180")',
     backgroundSize: 'cover',
     padding: '50px 0' // Optional: Adds some padding to the top and bottom
   };
